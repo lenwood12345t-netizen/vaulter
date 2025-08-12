@@ -2,7 +2,12 @@ import Link from 'next/link'
 import { listStories } from '@/lib/db'
 
 export default async function HomePage() {
-  const stories = await listStories({ limit: 12 })
+  let stories = []
+  try {
+    stories = await listStories({ limit: 12 })
+  } catch (err) {
+    console.error('Failed to load stories', err)
+  }
   return (
     <div className="space-y-6">
       <header className="space-y-2">
