@@ -13,7 +13,7 @@ export default async function StoryPage({ params }: { params: Params }) {
       <h1>{story.ai_title}</h1>
       <p className="lead">{story.ai_subtitle}</p>
       {story.image_url ? (
-        <Image src={story.image_url} alt={story.ai_title} width={1200} height={630} className="rounded-xl border" />
+        <Image src={story.image_url} alt={story.image_alt ?? story.ai_title} width={1200} height={630} className="rounded-xl border" />
       ) : null}
       <Markdown>{story.ai_body_md}</Markdown>
       <p className="text-sm opacity-60 mt-6">Bottom line: {story.bottom_line ?? '—'}</p>

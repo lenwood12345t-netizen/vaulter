@@ -7,6 +7,8 @@ const demo = [{
   ai_subtitle: 'Agency cites vessel maintenance; riders advised to check updated sailings.',
   ai_body_md: 'Demo content body.',
   image_url: '',
+  image_alt: 'Demo image alt text',
+  tags: ['demo'],
   published_at: new Date().toISOString(),
   created_at: new Date().toISOString(),
   bottom_line: 'Expect temporary delays; verify sailings before you go.'

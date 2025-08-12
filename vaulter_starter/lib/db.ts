@@ -7,6 +7,8 @@ type Story = {
   ai_subtitle: string
   ai_body_md: string
   image_url?: string
+  image_alt?: string
+  tags?: string[]
   published_at?: string
   created_at: string
   bottom_line?: string

@@ -14,6 +14,7 @@ Mobile‑first automated local‑news site (Next.js App Router). This starter in
 - Import this repo into Vercel.
 - Add a **Cron Job** in Vercel (Settings → Cron Jobs) to POST `/api/cron/run` every 30 minutes.
 - Add environment variables later when you wire Supabase + OpenAI.
+- Set `OPENAI_API_KEY` in your environment when enabling OpenAI features.
 
 ## Next Steps
 - Replace the in‑memory DB with Supabase. See `supabase/migrations/` and `supabase/README.md`.
