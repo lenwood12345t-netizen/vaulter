@@ -1,6 +1,6 @@
-// In real deploy, replace with Supabase (see supabase/README).
-// Here we include a minimal in-memory fallback so the site loads with seeds.
-type Story = {
+import { supabase } from './supabase'
+
+export type Story = {
   id: string
   slug?: string
   ai_title: string
@@ -11,18 +11,40 @@ type Story = {
   created_at: string
   bottom_line?: string
 }
-const mem: { stories: Story[] } = { stories: [] }
 
 export async function listStories({ limit = 12 } = {}) {
-  return mem.stories.slice(0, limit)
+  const { data, error } = await supabase
+    .from('stories')
+    .select('*')
+    .order('published_at', { ascending: false })
+    .order('created_at', { ascending: false })
+    .limit(limit)
+  if (error) throw error
+  return data as Story[]
 }
+
 export async function getStoryBySlug(slug: string) {
-  return mem.stories.find(s => s.slug === slug || s.id === slug)
+  const { data, error } = await supabase
+    .from('stories')
+    .select('*')
+    .or(`slug.eq.${slug},id.eq.${slug}`)
+    .maybeSingle()
+  if (error) throw error
+  return data as Story | null
 }
+
 export async function insertStory(s: Story) {
-  mem.stories.unshift(s)
-  return s
+  const { data, error } = await supabase
+    .from('stories')
+    .insert(s)
+    .select()
+    .single()
+  if (error) throw error
+  return data as Story
 }
-export function _seedStories(stories: Story[]) {
-  mem.stories = stories.concat(mem.stories)
+
+export async function _seedStories(stories: Story[]) {
+  for (const s of stories) {
+    await insertStory(s)
+  }
 }

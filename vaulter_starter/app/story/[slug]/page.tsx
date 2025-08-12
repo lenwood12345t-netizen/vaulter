@@ -6,7 +6,12 @@ import Markdown from 'react-markdown'
 type Params = { slug: string }
 
 export default async function StoryPage({ params }: { params: Params }) {
-  const story = await getStoryBySlug(params.slug)
+  let story = null
+  try {
+    story = await getStoryBySlug(params.slug)
+  } catch (err) {
+    console.error('Failed to load story', err)
+  }
   if (!story) return notFound()
   return (
     <article className="prose dark:prose-invert max-w-none">
