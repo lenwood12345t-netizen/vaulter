@@ -7,6 +7,9 @@ type Story = {
   ai_subtitle: string
   ai_body_md: string
   image_url?: string
+  tags?: string[]
+  region?: string
+  category?: string
   published_at?: string
   created_at: string
   bottom_line?: string
@@ -20,6 +23,15 @@ export async function getStoryBySlug(slug: string) {
   return mem.stories.find(s => s.slug === slug || s.id === slug)
 }
 export async function insertStory(s: Story) {
+  if (s.slug) {
+    const base = s.slug
+    let candidate = base
+    let i = 1
+    while (mem.stories.some(story => story.slug === candidate)) {
+      candidate = `${base}-${i++}`
+    }
+    s.slug = candidate
+  }
   mem.stories.unshift(s)
   return s
 }

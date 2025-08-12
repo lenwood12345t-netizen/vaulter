@@ -6,7 +6,10 @@ const demo = [{
   ai_title: 'WSDOT adjusts ferry schedule during maintenance',
   ai_subtitle: 'Agency cites vessel maintenance; riders advised to check updated sailings.',
   ai_body_md: 'Demo content body.',
-  image_url: '',
+  image_url: 'https://example.com/ferry.jpg',
+  tags: ['transportation', 'ferry'],
+  region: 'WA',
+  category: 'transportation',
   published_at: new Date().toISOString(),
   created_at: new Date().toISOString(),
   bottom_line: 'Expect temporary delays; verify sailings before you go.'
