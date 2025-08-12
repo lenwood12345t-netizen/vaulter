@@ -9,6 +9,10 @@ Mobile‑first automated local‑news site (Next.js App Router). This starter in
    npm run dev
    ```
 3. Visit http://localhost:3000 — you should see a seeded story.
+4. Run unit tests:
+   ```bash
+   npm test
+   ```
 
 ## Deploy to Vercel
 - Import this repo into Vercel.
